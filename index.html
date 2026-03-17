@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Famity — Upsell</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Lexend+Deca:wght@600&display=swap" rel="stylesheet">
+<style>
+/* ── TOKENS from Figma node 10322:3818 ── */
+:root {
+  --bg:          #FFFFFA;   /* fill_SQBBI8  */
+  --bg-bar:      #EFEFEF;   /* status/nav   */
+  --bg-teal:     #EDF6F9;   /* fill_NDNTBV  */
+  --bg-safe:     #F3F4F7;   /* fill_W0O7NX  */
+  --white:       #FFFFFF;   /* fill_2LCGAZ  */
+  --primary:     #08878F;   /* fill_37XJZ6  */
+  --primary-h:   #066d74;
+  --logo-color:  #308A93;   /* fill_2MIMEY  */
+  --check:       #369D8A;   /* fill_YWFDKR  */
+  --dark:        #2D3137;   /* fill_U5AV08  */
+  --black:       #000000;   /* fill_7RNB4I  */
+  --muted:       rgba(45,49,55,.70); /* fill_16Z8TV */
+  --subtle:      rgba(45,49,55,.75); /* fill_X1UFZ7 */
+  --gray:        #687D94;   /* fill_B1QNSQ  */
+  --legal-c:     #B2B2B2;   /* fill_D77S7M  */
+  --safe-text:   rgba(8,135,143,.70); /* fill_IJ9AVO */
+  --book-title:  rgba(255,255,255,.92); /* fill_DT8ADW */
+  --book-author: rgba(255,255,255,.60); /* fill_MXJON5 */
+  --spine:       rgba(0,0,0,.18);       /* fill_CQQ0BM */
+  --border:      #E0E8F1;  /* stroke_8HQYX9 */
+  --red:         #CC0000;  /* fill_4XHH7E  */
+  --red-bg:      rgba(214,51,51,.20); /* fill_DX3A76 */
+  --strike:      #ED4337;
+  --grad-book:   linear-gradient(30deg,#1A5F66 75%,#08878F 100%); /* fill_4ZUIT2 */
+  --f:           'DM Sans',sans-serif;
+  --f-logo:      'Lexend Deca',sans-serif;
+  --r-sm: 8px; --r-lg: 16px; --r-pill: 100px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+ul{list-style:none;}a{text-decoration:none;color:inherit;}
+button{font-family:var(--f);cursor:pointer;border:none;background:none;}
+img{display:block;max-width:100%;}
+body{font-family:var(--f);background:#e0e0e0;display:flex;justify-content:center;}
+
+/* ── TEXT STYLES (from Figma globalVars) ── */
+.t-logo   {font-family:var(--f-logo);font-size:14px;font-weight:600;line-height:1.214;}
+.t-h3     {font-size:23px;font-weight:600;line-height:1.391;text-align:center;}
+.t-h4     {font-size:20px;font-weight:600;line-height:1.5;letter-spacing:.25px;}
+.t-b1b    {font-size:16px;font-weight:600;line-height:1.5;letter-spacing:.25px;}
+.t-b1m    {font-size:16px;font-weight:500;line-height:1.5;letter-spacing:.25px;}
+.t-b2r    {font-size:14px;font-weight:400;line-height:1.429;letter-spacing:.1px;text-align:center;}
+.t-b2m    {font-size:14px;font-weight:500;line-height:1.429;letter-spacing:.1px;text-align:center;}
+.t-ovr    {font-size:12px;font-weight:400;line-height:1.333;text-align:center;}
+.t-ovm    {font-size:12px;font-weight:500;line-height:1.333;}
+.t-ovl    {font-size:12px;font-weight:400;line-height:1.302;text-align:left;}
+.t-badge  {font-size:12px;font-weight:500;line-height:1.333;text-align:center;}
+.t-foot   {font-size:9px; font-weight:400;line-height:1.778;text-align:center;}
+.t-bktl   {font-size:8.5px;font-weight:400;line-height:1.294;letter-spacing:-.5px;text-align:left;}
+.t-bkau   {font-size:7px;  font-weight:400;line-height:1.571;letter-spacing:-.5px;text-align:left;}
+.t-price-old{font-size:16px;font-weight:500;line-height:1.5;letter-spacing:.25px;}
+
+/* ── PAGE — 390px, fill_SQBBI8 ── */
+.page{width:390px;height:1489px;background:var(--bg);display:flex;flex-direction:column;align-items:center;overflow:hidden;}
+
+/* ── NAVBAR — 54px, #EFEFEF ── */
+/* layout_LKOZF2: none, fill, h:54 */
+.navbar{width:100%;height:54px;background:transparent;display:flex;align-items:center;padding:0 16px;position:relative;}
+.navbar__logo{position:absolute;left:50%;transform:translateX(-50%);color:var(--logo-color);}
+/* emoji close: x:32,y:15, 24×24 */
+.navbar__close{width:24px;height:24px;display:flex;align-items:center;justify-content:center;}
+
+/* ── MAIN — layout_FHV17E: col, center, gap:24 ── */
+.main{width:390px;display:flex;flex-direction:column;align-items:center;gap:24px;padding-top:16px;}
+
+/* ── HERO — layout_EXQ473: col, center, gap:12, w:358 ── */
+.hero{width:358px;display:flex;flex-direction:column;align-items:center;gap:12px;}
+
+/* Badge — layout_CZPF1T: row,center,gap:4,pad:4 8,br:16,opacity:.8 */
+.badge{display:inline-flex;align-items:center;gap:4px;background:var(--bg-teal);border-radius:var(--r-lg);padding:4px 8px;opacity:.8;}
+.hero__title{color:var(--black);text-align:center;width:100%;}
+.hero__sub{color:var(--muted);width:100%;}
+
+/* ── BOOK CARD — layout_IUNUKH: 358×220, br:16, border ── */
+.book-card{width:358px;height:220px;background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;position:relative;flex-shrink:0;}
+
+/* Illustration — layout_7SK6D8: 358×160, fill_NDNTBV */
+.book-illus{width:100%;height:160px;background:var(--bg-teal);position:relative;}
+
+/* Book wrap — layout_CQ25RH: x:24,y:16, 100×126 */
+.book-wrap{position:absolute;left:24px;top:16px;width:100px;height:126px;}
+
+/* Cover — layout_KRUWBA: 100×126, grad, br:0 8 8 0, shadow:effect_BLH5FP */
+.book-cover{position:absolute;left:0;top:0;width:100px;height:126px;background:var(--grad-book);border-radius:0 var(--r-sm) var(--r-sm) 0;box-shadow:4px 4px 14px 0 rgba(0,0,0,.20);overflow:hidden;}
+/* Spine — layout_44MCRL: x:0,y:0, 7×126, fill_CQQ0BM */
+.book-cover::before{content:'';position:absolute;left:0;top:0;width:7px;height:100%;background:var(--spine);}
+/* Title — layout_BG2FA8: x:12,y:20, 76×22 */
+.book-cover__title{position:absolute;left:12px;top:20px;width:76px;color:var(--book-title);}
+/* Author — layout_N4JNFF: x:12,y:103, 54×11 */
+.book-cover__author{position:absolute;left:12px;top:103px;width:54px;color:var(--book-author);}
+
+/* Bullets — layout_POQXLY x:148,y:30 | YOSJME x:148,y:70 | 8VXO5O x:148,y:110 */
+.bul{position:absolute;left:148px;width:182px;display:flex;align-items:center;gap:8px;}
+.bul-1{top:30px;}.bul-2{top:70px;}.bul-3{top:110px;}
+/* dot — layout_42JPG5: 8×8, circle, fill_37XJZ6 */
+.bul__dot{width:8px;height:8px;border-radius:50%;background:var(--primary);flex-shrink:0;}
+.bul__txt{color:var(--subtle);}
+
+/* Author row — layout_J1MIZW: x:8,y:168, w:342, row,center,gap:8 */
+.author-row{position:absolute;left:8px;top:168px;width:342px;display:flex;align-items:center;gap:8px;}
+/* Avatar — layout_D9TLHW: 44×44, imageRef:47597ed…, cropped */
+.avatar{width:44px;height:44px;background:transparent;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;color:var(--white);}
+.avatar img{width:100%;height:100%;object-fit:cover;}
+.author-info{flex:1;}
+.author-info__name{color:var(--dark);}
+.author-info__role{color:var(--muted);text-align:left;}
+.checkmark{width:20px;height:20px;border-radius:50%;background:var(--check);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+
+/* ── WHAT YOU GET — layout_0BHW55: col,center,gap:16,pad:16 32,w:358,br:16 ── */
+.wyg{width:358px;background:var(--bg-teal);border-radius:var(--r-lg);padding:16px 32px;display:flex;flex-direction:column;align-items:center;gap:16px;}
+.wyg__title{width:100%;text-align:center;color:var(--dark);}
+/* Benefits — layout_KYI7RB/T9VIWX */
+.benefits{display:flex;flex-direction:column;gap:16px;width:100%;}
+.ben-row{display:flex;gap:32px;align-self:stretch;}
+.ben{display:flex;align-items:center;gap:8px;flex:1;}
+.ben__ico{font-size:20px;line-height:1;flex-shrink:0;}
+.ben__lbl{color:var(--muted);text-align:left;}
+
+/* ── PRICE SECTION — layout_7T562U: col,stretch,gap:16,w:358 ── */
+.price-sec{width:358px;display:flex;flex-direction:column;align-items:center;gap:16px;}
+/* layout_MPNQFL: col,center,stretch,gap:8 */
+.price-txt{width:100%;display:flex;flex-direction:column;align-items:center;gap:8px;}
+/* layout_4MIS3E: row,center,gap:8 */
+.price-row{display:flex;align-items:center;gap:8px;}
+/* layout_C4SBX5: row,center,gap:4 */
+.price-vals{display:flex;align-items:center;gap:4px;}
+.price-old{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--strike);}
+.price-new{color:var(--dark);}
+/* Save — layout_CZPF1T: row,center,gap:4,pad:4 8,br:100,fill_DX3A76,stroke_XESN1A,opacity:.8 */
+.save{display:inline-flex;align-items:center;gap:4px;background:var(--red-bg);border:1px solid var(--red);border-radius:var(--r-pill);padding:4px 8px;opacity:.8;}
+.save__txt{color:var(--red);}
+.price-del{color:var(--muted);width:100%;}
+.one-time{color:var(--muted);text-align:center;letter-spacing:.25px;}
+
+/* CTA block — layout_MPNQFL: col,center,gap:8 */
+.cta-block{width:100%;display:flex;flex-direction:column;align-items:center;gap:8px;}
+/* Button — layout_ZKJHBL: 326×60,pad:24 40,br:16,fill_37XJZ6 */
+.cta-btn{width:326px;height:60px;background:var(--primary);border-radius:var(--r-lg);padding:24px 40px;display:flex;align-items:center;justify-content:center;color:var(--white);transition:background .15s,transform .1s;}
+.cta-btn:hover{background:var(--primary-h);}
+.cta-btn:active{transform:scale(.98);}
+/* Money-back — layout_C4SBX5: row,center,gap:4 */
+.mback{display:flex;align-items:center;gap:4px;}
+.mback__ico{width:16px;height:16px;flex-shrink:0;}
+.mback__txt{color:var(--gray);}
+.legal-txt{color:var(--legal-c);width:100%;}
+/* Pay safe — layout_7JM1EW: row,center,gap:4,pad:4 8,br:8,fill_W0O7NX */
+.pay-row{width:100%;display:flex;justify-content:center;}
+.pay-safe{display:inline-flex;align-items:center;gap:4px;background:var(--bg-safe);border-radius:var(--r-sm);padding:4px 8px;}
+.pay-safe__ico{width:18px;height:18px;}
+.pay-safe__txt{color:var(--safe-text);}
+
+/* ── FOOTER — layout_RLB6VN: fill, h:477 ── */
+.footer{width:390px;height:477px;position:relative;flex-shrink:0;}
+
+/* Guarantee — layout_WVMYWK: x:16,y:0, 358×224 */
+.guarantee{position:absolute;left:16px;top:0;width:358px;height:224px;}
+/* BG — layout_PN1T07: x:0,y:0, 358×224, br:8, fill_NDNTBV */
+.guarantee__bg{position:absolute;left:0;top:0;width:358px;height:224px;background:#EDF6F9;border-radius:8px;}
+/* Title — layout_6PGOLC: x:8,y:44, w:342, h:32 */
+.guarantee__title{position:absolute;left:8px;top:44px;width:342px;color:#2D3137;text-align:center;}
+/* Desc — layout_5UV8HD: x:8,y:88, w:342, h:120 */
+.guarantee__desc{position:absolute;left:8px;top:88px;width:342px;color:rgba(45,49,55,0.7);text-align:center;}
+/* Medal image — layout_HOZYAN: x:155,y:0, 48×41 */
+/* !! Export node 10322:3906 from Figma as guarantee-medal.svg !! */
+.guarantee__medal{position:absolute;left:155px;top:0;width:48px;height:41px;}
+
+/* Secure badges — layout_AJPFC4: x:0,y:224, 390×105 */
+/* !! Export node 10322:3910 "Secure 2" from Figma as secure-badges.svg !! */
+.secure-area{position:absolute;left:0;top:224px;width:390px;height:105px;display:flex;align-items:center;justify-content:center;}
+.secure-area img{max-height:57px;}
+
+/* Footer links — layout_SUIX5V: x:16,y:329, 358×148, fill_NDNTBV */
+.footer-links{position:absolute;left:16px;top:329px;width:358px;height:148px;background:#EDF6F9;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;}
+/* layout_51U3RV: col,center,gap:16 */
+.footer-inner{width:361px;display:flex;flex-direction:column;align-items:center;gap:16px;padding-top:10px;}
+/* layout_8R78JU: col,stretch,gap:8,w:80 */
+.footer-nav{display:flex;flex-direction:column;align-items:stretch;gap:8px;width:80px;}
+.footer-link{color:#2D3137;font-size:12px;font-weight:400;line-height:1.333;text-align:center;}
+.footer-link:hover{text-decoration:underline;}
+.footer-email{color:#687D94;font-size:14px;font-weight:400;line-height:1.429;text-align:center;}
+/* layout_GCZQLY: col,stretch,fill,gap:2 */
+.footer-copy{display:flex;flex-direction:column;align-items:stretch;gap:2px;width:100%;}
+.footer-copy p{color:rgba(45,49,55,0.7);font-size:12px;font-weight:400;line-height:1.333;text-align:center;}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- NAVBAR (no status bar — web version) -->
+  <!-- layout_LKOZF2: h:54, #EFEFEF -->
+  <nav class="navbar">
+    <!-- Logo: Lexend Deca 600 14px, fill_2MIMEY #308A93, x:145,y:16, w:99.5 -->
+    <span class="navbar__logo t-logo">Famity</span>
+    <!-- Close emoji: node 10322:3975, x:32,y:15, 24×24, fill_2LCGAZ -->
+    <button class="navbar__close" aria-label="Close" onclick="history.back()">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M18 6L6 18M6 6l12 12" stroke="#8C8C8C" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </nav>
+
+  <main class="main">
+
+    <!-- HERO: layout_EXQ473, col,center,gap:12,w:358 -->
+    <section class="hero">
+
+      <!-- Badge: layout_CZPF1T, br:16, fill_NDNTBV, opacity:.8 -->
+      <div class="badge">
+        <!-- Style/Star 12×12, node 10322:3829, componentId 1690:66789 -->
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <path d="M6 1l1.35 3.36L11 4.63 8.35 6.91l.86 3.59L6 8.5 2.79 10.5l.86-3.59L1 4.63l3.65-.27z" fill="#FFC500"/>
+        </svg>
+        <span class="t-badge" style="color:var(--dark);">EXCLUSIVE SIGN-UP OFFER</span>
+      </div>
+
+      <!-- Title: Famity/H4/s, fill_7RNB4I (#000) -->
+      <h1 class="hero__title t-h4">
+        <span style="color:#2D3137;">The Hidden Emotional Distance</span><br><span style="color:#369D8A;">You Shouldn't Ignore</span>
+      </h1>
+
+      <!-- Subtitle: Famity/Body2/r, fill_16Z8TV -->
+      <p class="hero__sub t-b2r">
+        Get a practical workbook to recognize emotional withdrawal —
+        and learn how to protect your relationship. Only $0.99
+      </p>
+    </section>
+
+    <!-- BOOK CARD: layout_IUNUKH, 358×220, br:16, stroke_8HQYX9 -->
+    <div class="book-card">
+
+      <!-- Illustration: layout_7SK6D8, 358×160, fill_NDNTBV -->
+      <div class="book-illus">
+
+        <!-- Book wrap: layout_CQ25RH, x:24,y:16, 100×126 -->
+        <div class="book-wrap">
+          <!-- Cover: layout_KRUWBA, fill_4ZUIT2, br:0 8 8 0, effect_BLH5FP -->
+          <div class="book-cover">
+            <!-- Title: style_2TR2Q1, layout_BG2FA8, x:12,y:20 -->
+            <p class="book-cover__title t-bktl">The Psychological Conversation Guide</p>
+            <!-- Author: style_ZJ5XA8, layout_N4JNFF, x:12,y:103 -->
+            <p class="book-cover__author t-bkau">Dr. Amanda Brooks</p>
+          </div>
+        </div>
+
+        <!-- Bullet 1: layout_POQXLY x:148,y:30, row,center,gap:8, w:182 -->
+        <div class="bul bul-1">
+          <span class="bul__dot"></span>
+          <span class="bul__txt t-ovl">How to open difficult<br>conversations</span>
+        </div>
+
+        <!-- Bullet 2: layout_YOSJME x:148,y:70 -->
+        <div class="bul bul-2">
+          <span class="bul__dot"></span>
+          <span class="bul__txt t-ovl">Recognize inconsistencies<br>calmly</span>
+        </div>
+
+        <!-- Bullet 3: layout_8VXO5O x:148,y:110 -->
+        <div class="bul bul-3">
+          <span class="bul__dot"></span>
+          <span class="bul__txt t-ovl">What psychology says to<br>observe</span>
+        </div>
+      </div>
+
+      <!-- Author row: layout_J1MIZW, x:8,y:168, w:342, row,center,gap:8 -->
+      <div class="author-row">
+        <!-- Icon: layout_D9TLHW 44×44, imageRef:47597ed…, fill_1VC1IX -->
+        <!-- !! Replace src with exported author-avatar.png from Figma !! -->
+        <div class="avatar">
+          <img src="author-avatar.png" alt="Dr.Amanda Brooks"
+               onerror="this.style.display='none';this.parentNode.textContent='AB'">
+        </div>
+        <div class="author-info">
+          <!-- Famity/Body1/b, fill_U5AV08 -->
+          <p class="author-info__name t-b1b">Dr.Amanda Brooks (M.A., SME)</p>
+          <!-- Famity/Body2/r, fill_16Z8TV -->
+          <p class="author-info__role t-b2r">Clinical Psychologist</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- WHAT YOU GET: layout_0BHW55, col,center,gap:16,pad:16 32,w:358,br:16 -->
+    <div class="wyg">
+      <!-- Famity/Body1/b, fill_U5AV08 -->
+      <p class="wyg__title t-b1b">What you get</p>
+      <!-- layout_NSCXF0: col, h:80. 2×2 grid in CSS -->
+      <div class="benefits">
+        <!-- layout_KYI7RB: row, gap:32 -->
+        <div class="ben-row">
+          <div class="ben"><span class="ben__ico">🧠</span><span class="ben__lbl t-ovl">Prepare yourself emotionally</span></div>
+          <div class="ben"><span class="ben__ico">👁️</span><span class="ben__lbl t-ovl">Patterns to watch for</span></div>
+        </div>
+        <div class="ben-row">
+          <div class="ben"><span class="ben__ico">❓</span><span class="ben__lbl t-ovl">7 core clarifying questions</span></div>
+          <div class="ben"><span class="ben__ico">🛡️</span><span class="ben__lbl t-ovl">Protect your emotional peace</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRICE + CTA: layout_7T562U, col,stretch,gap:16,w:358 -->
+    <div class="price-sec">
+
+      <!-- Text: layout_MPNQFL, col,center,gap:8 -->
+      <div class="price-txt">
+
+        <!-- Price row: layout_4MIS3E, row,center,gap:8 -->
+        <div class="price-row">
+          <!-- layout_C4SBX5: row,center,gap:4 -->
+          <div class="price-vals">
+            <!-- style_T18MA5, fill_16Z8TV, strikethrough #ED4337 -->
+            <span class="price-old t-price-old">9.99$</span>
+            <!-- pajamas:long-arrow, 16×16, fill_2LCGAZ -->
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M3 8h10M13 8L9 4M13 8L9 12" stroke="rgba(45,49,55,.7)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <!-- Famity/Body1/m, fill_U5AV08 -->
+            <span class="price-new t-b1m">0.99$</span>
+          </div>
+          <!-- Save badge: layout_CZPF1T, fill_DX3A76, stroke_XESN1A #CC0000, br:100, opacity:.8 -->
+          <div class="save">
+            <span class="t-badge">🔥</span>
+            <span class="save__txt t-badge">SAVE 90%</span>
+          </div>
+        </div>
+
+        <!-- Famity/Body2/r, fill_16Z8TV -->
+        <p class="price-del t-b2r">Order and receive the workbook to your<br>email in moments</p>
+        <!-- ONE TIME PAYMENT: Famity/Body1/b, fill_7MG357 -->
+        <p class="one-time t-b1b">ONE TIME PAYMENT</p>
+      </div>
+
+      <!-- Button + guarantee: layout_MPNQFL, col,center,gap:8 -->
+      <div class="cta-block">
+
+        <!-- CTA: layout_ZKJHBL, 326×60, pad:24 40, br:16, fill_37XJZ6 -->
+        <button class="cta-btn t-h3" onclick="">Continue</button>
+
+        <!-- Money-back: layout_C4SBX5, row,center,gap:4 -->
+        <div class="mback">
+          <!-- Icon/Lock: node 10322:3889, 16×16, componentId 3957:10701 -->
+          <svg class="mback__ico" viewBox="0 0 16 16" fill="none">
+            <rect x="2" y="7" width="12" height="8" rx="2" stroke="#687D94" stroke-width="1.5"/>
+            <path d="M5 7V5.5C5 3.57 6.57 2 8.5 2 10.43 2 12 3.57 12 5.5V7" stroke="#687D94" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <!-- Famity/Body2/m, fill_B1QNSQ #687D94 -->
+          <span class="mback__txt t-b2m">30-day money-back guarantee</span>
+        </div>
+
+        <!-- Legal: Famity/Footnote/r, fill_D77S7M #B2B2B2 -->
+        <p class="legal-txt t-foot">
+          Once your discounted introductory plan ends, your subscription will automatically
+          renew monthly at the full price of {$39.99}. To cancel your subscription,
+          please contact us at support@famity.co
+        </p>
+
+        <!-- Pay safe: layout_40G20Q -->
+        <div class="pay-row">
+          <img src="Pay Safe.svg" alt="Pay Safe &amp; Secure" style="height:26px;">
+        </div>
+      </div>
+    </div>
+
+        <!-- FOOTER: 477px total height, all absolute positioned per Figma -->
+    <footer class="footer">
+
+      <!-- Guarantee: x:16, y:0, 358×224, fill_0DWCEL #EDF6F9 -->
+      <div class="guarantee">
+        <!-- bg: x:0,y:0, 358×224, br:8, fill_0DWCEL -->
+        <div class="guarantee__bg"></div>
+        <!-- medal image: x:155,y:0, 48×41 -->
+        <img src="guarantee-medal.svg" class="guarantee__medal" width="48" height="41" alt="">
+        <!-- title: Famity/H3/s, x:8,y:44, 342×32, fill_9YPHG0 #2D3137, center -->
+        <h2 class="guarantee__title t-h3">Money-Back Guarantee</h2>
+        <!-- desc: Famity/Body2/r, x:8,y:88, 342×120, fill_QYOREY, center -->
+        <p class="guarantee__desc t-b2r">
+          We are confident in the quality of our app — tens of thousands of
+          clients around the world have already got peace of mind with the Famity.
+          We are prepared to refund your money if you encountered technical
+          issues that hindered the proper use of the application.
+        </p>
+      </div>
+
+      <!-- Secure 2: x:0,y:224, 390×105 -->
+      <div class="secure-area">
+        <img src="Secure icon.svg" alt="Secure" style="height:57px;">
+      </div>
+
+      <!-- footer links: x:16,y:329, 358×148, fill_0DWCEL #EDF6F9 -->
+      <div class="footer-links">
+        <!-- Frame 1321314444: col,center,gap:16, x:0,y:10, w:361 -->
+        <div class="footer-inner">
+          <!-- Frame 1321314442: col,stretch,gap:8, w:80 -->
+          <nav class="footer-nav">
+            <!-- Famity/Overline/r, fill_9YPHG0 #2D3137 -->
+            <a href="/privacy" class="footer-link t-ovr">Privacy Policy</a>
+            <a href="/terms"   class="footer-link t-ovr">Terms of Use</a>
+          </nav>
+          <!-- Famity/Body2/r, fill_N4XV39 #687D94 -->
+          <p class="footer-email t-b2r">support@famity.co</p>
+          <!-- Frame 1321314443: col,stretch,fill,gap:2, fill_QYOREY -->
+          <div class="footer-copy">
+            <p class="t-ovr">Copyright © 2025 Famity</p>
+            <p class="t-ovr">All rights reserved.</p>
+          </div>
+        </div>
+      </div>
+
+    </footer>
+
+</main>
+</div>
+</body>
+</html>
