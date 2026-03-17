@@ -146,7 +146,7 @@ body{font-family:var(--f);background:#e0e0e0;display:flex;justify-content:center
 /* CTA block — layout_MPNQFL: col,center,gap:8 */
 .cta-block{width:100%;display:flex;flex-direction:column;align-items:center;gap:8px;}
 /* Button — layout_ZKJHBL: 326×60,pad:24 40,br:16,fill_37XJZ6 */
-.cta-btn{width:326px;height:60px;background:var(--primary);border-radius:var(--r-lg);padding:24px 40px;display:flex;align-items:center;justify-content:center;color:var(--white);transition:background .15s,transform .1s;}
+.cta-btn{width:326px;height:60px;background:var(--primary);border-radius:var(--r-lg);padding:24px 40px;display:flex;align-items:center;justify-content:center;gap:8px;color:var(--white);transition:background .15s,transform .1s;}
 .cta-btn:hover{background:var(--primary-h);}
 .cta-btn:active{transform:scale(.98);}
 /* Money-back — layout_C4SBX5: row,center,gap:4 */
@@ -178,7 +178,7 @@ body{font-family:var(--f);background:#e0e0e0;display:flex;justify-content:center
 /* Secure badges — layout_AJPFC4: x:0,y:224, 390×105 */
 /* !! Export node 10322:3910 "Secure 2" from Figma as secure-badges.svg !! */
 .secure-area{position:absolute;left:0;top:224px;width:390px;height:105px;display:flex;align-items:center;justify-content:center;}
-.secure-area img{max-height:57px;}
+.secure-area img{width:390px;height:105px;}
 
 /* Footer links — layout_SUIX5V: x:16,y:329, 358×148, fill_NDNTBV */
 .footer-links{position:absolute;left:16px;top:329px;width:358px;height:148px;background:#EDF6F9;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;}
@@ -314,37 +314,34 @@ body{font-family:var(--f);background:#e0e0e0;display:flex;justify-content:center
       <!-- Text: layout_MPNQFL, col,center,gap:8 -->
       <div class="price-txt">
 
-        <!-- Price row: layout_4MIS3E, row,center,gap:8 -->
+        <!-- ONE TIME PAYMENT: Famity/Body1/b, fill_JAOSBA -->
+        <p class="one-time t-b1b">ONE TIME PAYMENT</p>
+
+        <!-- Price row: layout_SSHAY3, row,center,gap:8 -->
         <div class="price-row">
-          <!-- layout_C4SBX5: row,center,gap:4 -->
+          <!-- layout_6OZ19M: row,center,gap:4 -->
           <div class="price-vals">
-            <!-- style_T18MA5, fill_16Z8TV, strikethrough #ED4337 -->
             <span class="price-old t-price-old">9.99$</span>
-            <!-- pajamas:long-arrow, 16×16, fill_2LCGAZ -->
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path d="M3 8h10M13 8L9 4M13 8L9 12" stroke="rgba(45,49,55,.7)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-            <!-- Famity/Body1/m, fill_U5AV08 -->
             <span class="price-new t-b1m">0.99$</span>
           </div>
-          <!-- Save badge: layout_CZPF1T, fill_DX3A76, stroke_XESN1A #CC0000, br:100, opacity:.8 -->
           <div class="save">
             <span class="t-badge">🔥</span>
             <span class="save__txt t-badge">SAVE 90%</span>
           </div>
         </div>
 
-        <!-- Famity/Body2/r, fill_16Z8TV -->
+        <!-- Famity/Body2/r, fill_JAOSBA -->
         <p class="price-del t-b2r">Order and receive the workbook to your<br>email in moments</p>
-        <!-- ONE TIME PAYMENT: Famity/Body1/b, fill_7MG357 -->
-        <p class="one-time t-b1b">ONE TIME PAYMENT</p>
       </div>
 
       <!-- Button + guarantee: layout_MPNQFL, col,center,gap:8 -->
       <div class="cta-block">
 
         <!-- CTA: layout_ZKJHBL, 326×60, pad:24 40, br:16, fill_37XJZ6 -->
-        <button class="cta-btn t-h3" onclick="">Continue</button>
+        <button class="cta-btn t-h3" onclick="">Get my Guide</button>
 
         <!-- Money-back: layout_C4SBX5, row,center,gap:4 -->
         <div class="mback">
@@ -356,13 +353,6 @@ body{font-family:var(--f);background:#e0e0e0;display:flex;justify-content:center
           <!-- Famity/Body2/m, fill_B1QNSQ #687D94 -->
           <span class="mback__txt t-b2m">30-day money-back guarantee</span>
         </div>
-
-        <!-- Legal: Famity/Footnote/r, fill_D77S7M #B2B2B2 -->
-        <p class="legal-txt t-foot">
-          Once your discounted introductory plan ends, your subscription will automatically
-          renew monthly at the full price of {$39.99}. To cancel your subscription,
-          please contact us at support@famity.co
-        </p>
 
         <!-- Pay safe: layout_40G20Q -->
         <div class="pay-row">
@@ -393,7 +383,7 @@ body{font-family:var(--f);background:#e0e0e0;display:flex;justify-content:center
 
       <!-- Secure 2: x:0,y:224, 390×105 -->
       <div class="secure-area">
-        <img src="Secure icon.svg" alt="Secure" style="height:57px;">
+        <img src="secure-2.svg" alt="Secure">
       </div>
 
       <!-- footer links: x:16,y:329, 358×148, fill_0DWCEL #EDF6F9 -->
